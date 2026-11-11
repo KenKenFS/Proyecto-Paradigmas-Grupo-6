@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Sin autenticacion (fuera del alcance, riesgo 4 del documento):
+    // solo se permiten las colecciones del proyecto.
+    match /tareas/{id} {
+      allow read, write: if true;
+    }
+    match /categorias/{id} {
+      allow read, write: if true;
+    }
+  }
+}
