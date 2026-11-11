@@ -15,10 +15,10 @@ export function sumarDias(hoy, dias) {
 }
 
 export const categoriasEjemplo = [
-  { id: 'c1', nombre: 'Universidad', color: '#6366f1' },
-  { id: 'c2', nombre: 'Trabajo', color: '#0ea5e9' },
-  { id: 'c3', nombre: 'Personal', color: '#10b981' },
-  { id: 'c4', nombre: 'Hogar', color: '#f59e0b' },
+  { id: 'c1', nombre: 'Universidad', color: '#4f5f47' },
+  { id: 'c2', nombre: 'Trabajo', color: '#7a6a55' },
+  { id: 'c3', nombre: 'Personal', color: '#b48a3c' },
+  { id: 'c4', nombre: 'Hogar', color: '#7d8da0' },
 ]
 
 export function crearTareasEjemplo(hoy) {

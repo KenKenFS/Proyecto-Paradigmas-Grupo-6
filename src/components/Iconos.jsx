@@ -26,15 +26,3 @@ export const IconoCalendario = () => (
 export const IconoEstadisticas = () => (
   <svg {...base}><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg>
 )
-export const IconoCheck = () => (
-  <svg {...base} width="18" height="18"><circle cx="12" cy="12" r="9" /><path d="m8 12.5 2.8 2.8L16 9.5" /></svg>
-)
-export const IconoReloj = () => (
-  <svg {...base} width="18" height="18"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
-)
-export const IconoAlerta = () => (
-  <svg {...base} width="18" height="18"><path d="M12 3 2.5 20h19L12 3Z" /><path d="M12 10v4M12 17.2v.01" /></svg>
-)
-export const IconoRayo = () => (
-  <svg {...base} width="18" height="18"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" /></svg>
-)
