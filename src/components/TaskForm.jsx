@@ -29,7 +29,13 @@ function TaskForm({ categorias, alGuardar, tareaInicial = null, alCancelar }) {
   async function enviar(evento) {
     evento.preventDefault()
     setGuardando(true)
-    const resultado = await alGuardar(datos)
+    let resultado
+    try {
+      resultado = await alGuardar(datos)
+    } catch {
+      // Si algo falla (por ejemplo, sin conexión), el botón no se queda bloqueado.
+      resultado = { ok: false, error: 'No se pudo guardar. Intente de nuevo.' }
+    }
     setGuardando(false)
 
     if (!resultado.ok) {
