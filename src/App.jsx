@@ -7,23 +7,26 @@ import Sidebar from './components/Sidebar'
 import { MODULOS } from './components/modulos'
 import Dashboard from './components/Dashboard'
 import Calendario from './components/Calendario'
+import Tareas from './components/Tareas'
 import { useTareas } from './hooks/useTareas'
 import './App.css'
 
 const SUBTITULOS = {
   dashboard: 'Un vistazo a tu progreso',
+  tareas: 'Crea y administra tus tareas',
   calendario: 'Tus fechas de entrega del mes',
 }
 
 function App() {
   const [modulo, setModulo] = useState('dashboard')
-  const { tareas, categorias, hoy } = useTareas()
+  const { tareas, categorias, hoy, ...operaciones } = useTareas()
   const actual = MODULOS.find((m) => m.id === modulo)
 
   const pantallas = {
     dashboard: (
       <Dashboard tareas={tareas} categorias={categorias} hoy={hoy} alIrACalendario={() => setModulo('calendario')} />
     ),
+    tareas: <Tareas tareas={tareas} categorias={categorias} hoy={hoy} {...operaciones} />,
     calendario: <Calendario tareas={tareas} categorias={categorias} hoy={hoy} />,
   }
 
