@@ -667,3 +667,65 @@
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+/* ---------- Estadísticas (Integrante 3) ---------- */
+.estadisticas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 24px;
+  align-items: start;
+}
+
+.estadisticas__principal {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+}
+
+.estadisticas__filtros {
+  display: grid;
+  gap: 18px;
+}
+
+.estadisticas__fila {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.estadisticas .campo {
+  display: grid;
+  gap: 6px;
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+}
+
+.estadisticas .campo input,
+.estadisticas .campo select {
+  width: 100%;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: var(--fondo);
+  color: var(--texto);
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.estadisticas .nota {
+  margin: 16px 0 0;
+  color: var(--texto-suave);
+  font-size: 0.82rem;
+}
+
+.barras__relleno--alta { background: var(--alta); }
+.barras__relleno--media { background: var(--media); }
+.barras__relleno--baja { background: var(--baja); }
+
+@media (max-width: 1100px) {
+  .estadisticas { grid-template-columns: minmax(0, 1fr); }
+  .estadisticas .estado { position: static; order: -1; }
+}
+
+@media (max-width: 720px) {
+  .estadisticas__fila { grid-template-columns: minmax(0, 1fr); }
+}
