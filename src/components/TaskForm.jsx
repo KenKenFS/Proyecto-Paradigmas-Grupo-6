@@ -2,7 +2,7 @@
 // El formulario solo junta los datos y muestra el mensaje que devuelve el servicio.
 // NO valida aquí: las validaciones (paradigma imperativo) viven en TareaService,
 // así hay un solo lugar con las reglas.
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Tareas.css'
 
 const TAREA_VACIA = {
@@ -19,6 +19,13 @@ function TaskForm({ categorias, alGuardar, tareaInicial = null, alCancelar }) {
   const [error, setError] = useState(null)
   const [aviso, setAviso] = useState(null)
   const [guardando, setGuardando] = useState(false)
+
+  // El aviso de exito se oculta solo a los 3 segundos (los errores se quedan).
+  useEffect(() => {
+    if (!aviso) return
+    const temporizador = setTimeout(() => setAviso(null), 3000)
+    return () => clearTimeout(temporizador)
+  }, [aviso])
 
   // Actualiza el campo que cambió (usa el atributo "name" del input).
   function cambiar(evento) {

@@ -1,5 +1,8 @@
 // Integrante 2 - Configuracion de Firebase Firestore.
 // Las llaves viven en .env.local (ver .env.example). No subirlas al repo.
+//
+// Si un integrante no tiene .env.local, "firebaseConfigurado" es false y la app
+// usa el repositorio en memoria (data/repositorioMemoria.js) en lugar de fallar.
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 
@@ -12,5 +15,19 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
-export const app = initializeApp(firebaseConfig)
-export const db = getFirestore(app)
+export const firebaseConfigurado = Boolean(
+  firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.appId,
+)
+
+let db = null
+
+// Crea la conexion la primera vez que se pide (y solo si hay llaves).
+export function obtenerDb() {
+  if (!firebaseConfigurado) {
+    throw new Error('Firebase no está configurado: falta .env.local (ver .env.example).')
+  }
+  if (db === null) {
+    db = getFirestore(initializeApp(firebaseConfig))
+  }
+  return db
+}

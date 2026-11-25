@@ -7,6 +7,108 @@
   max-width: 760px;
 }
 
+/* Pantallas anchas: formulario a la izquierda (fijo al bajar) y lista a la derecha */
+@media (min-width: 1180px) {
+  .tareas {
+    grid-template-columns: 360px minmax(0, 1fr);
+    align-items: start;
+    max-width: none;
+  }
+
+  .tareas > .formulario {
+    position: sticky;
+    top: 24px;
+  }
+
+  .tareas .formulario__fila {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Si queda un campo solo en la ultima fila, ocupa todo el ancho */
+  .tareas .formulario__fila > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- Colores de categoria ---------- */
+.colores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.colores legend {
+  margin-bottom: 6px;
+  padding: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.color {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.color input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.color span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s;
+}
+
+.color:hover span {
+  transform: scale(1.1);
+}
+
+.color input:checked + span {
+  box-shadow: 0 0 0 2px var(--superficie), 0 0 0 4px var(--texto);
+}
+
+.color input:focus-visible + span {
+  outline: 2px solid var(--acento);
+  outline-offset: 4px;
+}
+
+/* El selector libre se muestra como un circulo con el arcoiris */
+.color--libre span {
+  background: conic-gradient(#a4503a, #b48a3c, #6f8566, #5d7a8c, #8c5a7a, #a4503a);
+}
+
+/* ---------- Avance por categoria ---------- */
+.categoria__avance {
+  flex: 0 0 120px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--borde);
+  overflow: hidden;
+}
+
+.categoria__avance div {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+@media (max-width: 600px) {
+  .categoria__avance { display: none; }
+}
+
 /* ---------- Formulario ---------- */
 .formulario {
   display: grid;
@@ -110,10 +212,18 @@
   background: #f8ebe6;
 }
 
+.alerta--aviso {
+  margin-bottom: 16px;
+  border: 1px solid var(--media);
+  color: var(--texto);
+  background: #f6eedb;
+}
+
 .alerta--ok {
   border: 1px solid var(--baja);
   color: var(--acento);
   background: var(--acento-suave);
+  animation: aparecer 0.2s ease-out;
 }
 
 /* ---------- Lista de tareas ---------- */
